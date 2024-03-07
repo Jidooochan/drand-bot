@@ -12,7 +12,7 @@ import {
   timeOfRound,
 } from "./drand.js";
 import { shuffle } from "./shuffle.js";
-import { group, isMyGroup } from "./group.js";
+import { group } from "./group.js";
 
 dotenv.config();
 
@@ -62,12 +62,7 @@ async function main() {
     try {
       const delay = publishedSince(beacon.round);
       console.log(beacon);
-      if (!isMyGroup(botAddress, beacon.round)) {
-        console.log(`Got beacon #${beacon.round} after ${delay}ms. Skipping.`);
-        continue;
-      } else {
-        console.log(`Got beacon #${beacon.round} after ${delay}ms.`);
-      }
+      console.log(`Got beacon #${beacon.round} after ${delay}ms.`);
     } catch (e) {
       console.error(errorColor(e.toString()));
     }
